@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact | Mathew Kedok Gatdet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font & Font Awesome -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --primary:#0a1f44;
+  --secondary:#f4b400;
+  --bg:#fff;
+  --text:#333;
+}
+body.dark{
+  --bg:#0a1f44;
+  --text:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins;}
+body{background:var(--bg);color:var(--text);transition:.4s;}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--primary);
+  color:#fff;
+  padding:20px 8%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+header h2{font-size:26px;}
+header nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  justify-content:flex-end;
+  flex:1;
+}
+header nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:500;
+  transition:.3s;
+}
+header nav a:hover{color:var(--secondary);}
+.mode-toggle{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* HERO */
+.section{
+  padding:80px 8%;
+}
+h1{margin-bottom:30px; font-size:36px;}
+p{line-height:1.6; margin-bottom:15px;}
+
+/* GRID CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+.card{
+  background:#1f3c88;
+  color:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  padding:20px;
+  transform:translateY(0);
+  transition:all 0.4s ease;
+  opacity:0;
+  animation:fadeIn 1s forwards;
+}
+.card:hover{background:var(--secondary); color:#0a1f44; transform:translateY(-10px);}
+@keyframes fadeIn{to{opacity:1;}}
+
+/* CONTACT SECTION */
+.contact-section{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  margin-top:40px;
+}
+.contact-info, .contact-form{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+body.dark .contact-info, body.dark .contact-form{
+  background:#1f3c88; color:#fff; box-shadow:0 5px 20px rgba(255,255,255,0.1);
+}
+.contact-form input, .contact-form textarea{
+  width:100%; padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc; font-size:15px;
+}
+body.dark .contact-form input, body.dark .contact-form textarea{
+  background:#0a1f44; border:1px solid #f4b400; color:#fff;
+}
+.contact-form textarea{resize:none; height:140px;}
+.contact-form button{
+  width:100%; padding:14px; border:none; border-radius:8px; font-weight:600; cursor:pointer;
+  background:var(--primary); color:#fff; transition:.3s;
+}
+body.dark .contact-form button{background:var(--secondary); color:#0a1f44;}
+.contact-form button:hover{opacity:0.85;}
+
+/* MAP */
+.map-container{
+  margin-top:50px;
+  border-radius:12px;
+  overflow:hidden;
+}
+.map-container iframe{
+  width:100%;
+  height:350px;
+  border:none;
+  border-radius:12px;
+}
+
+/* FOOTER */
+footer{
+  background:var(--primary);
+  color:#fff;
+  padding:40px 8%;
+  text-align:center;
+}
+footer nav a{
+  color:#fff;
+  text-decoration:none;
+  margin:0 10px;
+}
+footer nav a:hover{color:var(--secondary);}
+.footer-info{margin-top:15px; line-height:1.6;}
+
+/* CHAT BUTTONS */
+.chat-buttons{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  z-index:1000;
+}
+.chat-buttons a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 20px;
+  border-radius:50px;
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  transition:.3s;
+}
+.chat-buttons a i{font-size:18px;}
+.chat-buttons a.whatsapp{background:#25d366;}
+.chat-buttons a.whatsapp:hover{opacity:0.8;}
+.chat-buttons a.facebook{background:#3b5998;}
+.chat-buttons a.facebook:hover{opacity:0.8;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  header{flex-direction:column; align-items:flex-start;}
+  header nav{flex-direction:column; align-items:flex-start; width:100%;}
+  .contact-section{grid-template-columns:1fr;}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Mathew Kedok</h2>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+    <button class="mode-toggle" onclick="toggleMode()">🌓</button>
+  </nav>
+</header>
+
+<section class="section">
+  <h1>Contact Me</h1>
+  <p>Let’s discuss your project, request a service, or get professional ICT consultation.</p>
+</section>
+
+<section class="contact-section">
+  <div class="contact-info">
+    <h3>Get in Touch</h3>
+    <p><strong>Location:</strong> Unity State, South Sudan</p>
+    <p><strong>Email:</strong> info@yourdomain.com</p>
+    <p><strong>Phone / WhatsApp:</strong> +211 922 004 961</p>
+    <p>I am available for software development, networking projects, CCTV installation, consultancy, and remote IT support.</p>
+  </div>
+
+  <div class="contact-form">
+    <h3>Send a Message</h3>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <input type="text" id="subject" placeholder="Subject" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<section class="section map-container">
+  <h1>Our Location</h1>
+  <iframe 
+    src="https://maps.google.com/maps?q=Unity%20State%20South%20Sudan&t=&z=8&ie=UTF8&iwloc=&output=embed" 
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</section>
+
+<footer>
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="about.html">About</a> |
+    <a href="services.html">Services</a> |
+    <a href="portfolio.html">Portfolio</a> |
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="footer-info">
+    <p>📍 Unity State, South Sudan</p>
+    <p>📞 +211922004961 |+254708787646 | ✉ mathewkedok@gmail.com | kedokgadet@gmail.com</p>
+  </div>
+   <p>© 2025 Mathew Kedok Gatdet. All Rights Reserved.</p>
+</footer>
+
+<div class="chat-buttons">
+  <a class="whatsapp" href="https://wa.me/211922004961" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <a class="facebook" href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+</div>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+function toggleMode(){
+  document.body.classList.toggle('dark');
+  localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');
+}
+if(localStorage.getItem('theme')==='dark'){document.body.classList.add('dark');}
+
+/* FORM SUBMISSION */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Message sent successfully! (Connect to backend)');
+  this.reset();
+});
+</script>
+
+</body>
+</html>
