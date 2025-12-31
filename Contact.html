@@ -36,20 +36,19 @@ header{
   z-index:1000;
 }
 header h2{font-size:26px;}
-header nav{
+.nav-links{
   display:flex;
   gap:20px;
   align-items:center;
-  justify-content:flex-end;
-  flex:1;
+  transition:.3s;
 }
-header nav a{
+.nav-links a{
   color:#fff;
   text-decoration:none;
   font-weight:500;
   transition:.3s;
 }
-header nav a:hover{color:var(--secondary);}
+.nav-links a:hover{color:var(--secondary);}
 .mode-toggle{
   background:none;
   border:none;
@@ -57,34 +56,21 @@ header nav a:hover{color:var(--secondary);}
   font-size:22px;
   cursor:pointer;
 }
+.hamburger{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:26px;
+  cursor:pointer;
+}
 
-/* HERO */
+/* SECTION */
 .section{
   padding:80px 8%;
 }
-h1{margin-bottom:30px; font-size:36px;}
+h1{margin-bottom:30px; font-size:36px; text-align:center;}
 p{line-height:1.6; margin-bottom:15px;}
-
-/* GRID CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
-}
-.card{
-  background:#1f3c88;
-  color:#fff;
-  border-radius:12px;
-  overflow:hidden;
-  cursor:pointer;
-  padding:20px;
-  transform:translateY(0);
-  transition:all 0.4s ease;
-  opacity:0;
-  animation:fadeIn 1s forwards;
-}
-.card:hover{background:var(--secondary); color:#0a1f44; transform:translateY(-10px);}
-@keyframes fadeIn{to{opacity:1;}}
 
 /* CONTACT SECTION */
 .contact-section{
@@ -130,19 +116,46 @@ body.dark .contact-form button{background:var(--secondary); color:#0a1f44;}
 }
 
 /* FOOTER */
-footer{
+.site-footer{
   background:var(--primary);
   color:#fff;
-  padding:40px 8%;
-  text-align:center;
+  padding:60px 8% 20px;
 }
-footer nav a{
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+}
+.footer-col h3{font-size:22px;margin-bottom:15px;}
+.footer-col h4{font-size:18px;margin-bottom:15px;color:var(--secondary);}
+.footer-col p{font-size:14px;line-height:1.7;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{
   color:#fff;
+  font-size:14px;
   text-decoration:none;
-  margin:0 10px;
 }
-footer nav a:hover{color:var(--secondary);}
-.footer-info{margin-top:15px; line-height:1.6;}
+.footer-col ul li a:hover{
+  color:var(--secondary);
+  padding-left:5px;
+}
+.footer-socials{display:flex;gap:15px;}
+.footer-socials a{
+  width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;color:#fff;transition:.3s;
+}
+.footer-socials a:hover{
+  background:var(--secondary);
+  transform:translateY(-4px);
+}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.2);
+  margin-top:40px;
+  padding-top:15px;
+  text-align:center;
+  font-size:14px;
+}
 
 /* CHAT BUTTONS */
 .chat-buttons{
@@ -166,16 +179,34 @@ footer nav a:hover{color:var(--secondary);}
   transition:.3s;
 }
 .chat-buttons a i{font-size:18px;}
-.chat-buttons a.whatsapp{background:#25d366;}
-.chat-buttons a.whatsapp:hover{opacity:0.8;}
-.chat-buttons a.facebook{background:#3b5998;}
-.chat-buttons a.facebook:hover{opacity:0.8;}
+.chat-buttons .whatsapp{background:#25d366;}
+.chat-buttons .facebook{background:#3b5998;}
 
 /* RESPONSIVE */
 @media(max-width:900px){
-  header{flex-direction:column; align-items:flex-start;}
-  header nav{flex-direction:column; align-items:flex-start; width:100%;}
   .contact-section{grid-template-columns:1fr;}
+  .footer-container{grid-template-columns:repeat(2,1fr);}
+  .nav-links{
+    display:none;
+    flex-direction:column;
+    width:100%;
+    background:var(--primary);
+    position:absolute;
+    top:70px;
+    left:0;
+    padding:15px 0;
+  }
+  .nav-links.show{
+    display:flex;
+  }
+  .hamburger{
+    display:block;
+  }
+}
+@media(max-width:600px){
+  header nav{flex-wrap:wrap;}
+  .footer-container{grid-template-columns:1fr;text-align:center;}
+  .footer-socials{justify-content:center;}
 }
 </style>
 </head>
@@ -184,7 +215,8 @@ footer nav a:hover{color:var(--secondary);}
 
 <header>
   <h2>Mathew Kedok</h2>
-  <nav>
+  <button class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+  <nav class="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="services.html">Services</a>
@@ -203,7 +235,7 @@ footer nav a:hover{color:var(--secondary);}
   <div class="contact-info">
     <h3>Get in Touch</h3>
     <p><strong>Location:</strong> Unity State, South Sudan</p>
-    <p><strong>Email:</strong> info@yourdomain.com</p>
+    <p><strong>Email:</strong> info@mathewkedok.com</p>
     <p><strong>Phone / WhatsApp:</strong> +211 922 004 961</p>
     <p>I am available for software development, networking projects, CCTV installation, consultancy, and remote IT support.</p>
   </div>
@@ -229,27 +261,50 @@ footer nav a:hover{color:var(--secondary);}
   </iframe>
 </section>
 
-<footer>
-  <nav>
-    <a href="index.html">Home</a> |
-    <a href="about.html">About</a> |
-    <a href="services.html">Services</a> |
-    <a href="portfolio.html">Portfolio</a> |
-    <a href="contact.html">Contact</a>
-  </nav>
-  <div class="footer-info">
-    <p>📍 Unity State, South Sudan</p>
-    <p>📞 +211922004961 |+254708787646 | ✉ mathewkedok@gmail.com | kedokgadet@gmail.com</p>
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <h3>Mathew Kedok Gatdet</h3>
+      <p>Software Developer & ICT Consultant delivering modern, secure and scalable digital solutions.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📍 Unity State, South Sudan</p>
+      <p>📞 +211 922 004 961</p>
+      <p>📞 +254 708 787 646</p>
+      <p>✉ mathewkedok@gmail.com</p>
+      <p>✉ kedokgadet@gmail.com</p>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <div class="footer-socials">
+        <a href="https://wa.me/211922004961" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/share/1DWQGLYFZP/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
   </div>
-   <p>© 2025 Mathew Kedok Gatdet. All Rights Reserved.</p>
+  <div class="footer-bottom">
+    <p>© 2025 Mathew Kedok Gatdet. All Rights Reserved.</p>
+  </div>
 </footer>
 
 <div class="chat-buttons">
   <a class="whatsapp" href="https://wa.me/211922004961" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-  <a class="facebook" href="https://facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+  <a class="facebook" href="https://www.facebook.com/share/1DWQGLYFZP/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
 </div>
 
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script>
 function toggleMode(){
   document.body.classList.toggle('dark');
@@ -263,6 +318,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e){
   alert('Message sent successfully! (Connect to backend)');
   this.reset();
 });
+
+/* HAMBURGER MENU */
+function toggleMenu(){
+  document.querySelector('.nav-links').classList.toggle('show');
+}
 </script>
 
 </body>
